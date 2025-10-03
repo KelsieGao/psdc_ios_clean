@@ -38,3 +38,4 @@ DerivedData/
 ### CocoaPods ###
 Podfile.lock
 /Pods/
+.env
