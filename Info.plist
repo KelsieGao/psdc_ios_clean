@@ -44,6 +44,10 @@ examples/example-ios/polar-sensor-data-collector/PSDC/PolarBleSdkManager.swift</
 	<string>master</string>
 	<key>SDK_GIT_COMMIT</key>
 	<string>244cf23</string>
+	<key>SUPABASE_URL</key>
+	<string>https://xfjglfidrbkkjztzduvb.supabase.co</string>
+	<key>SUPABASE_ANON_KEY</key>
+	<string>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhmamdsZmlkcmJra2p6dHpkdXZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk0NTI5NDEsImV4cCI6MjA3NTAyODk0MX0.EZDFH94YjMKQApdmYZOuI0fdD63m-PB62nAK_yh-KD4</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>

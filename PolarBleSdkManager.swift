@@ -2530,47 +2530,23 @@ extension PolarBleSdkManager {
         NSLog("Error \(text)")
     }
     private func sendHRDataToCloud(_ hrData: [String: Any]) {
-            guard let url = URL(string: "https://saveheartrate-345080069050.us-west2.run.app") else { return }
-            
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-            
+        Task {
             do {
-                request.httpBody = try JSONSerialization.data(withJSONObject: hrData)
-                
-                URLSession.shared.dataTask(with: request) { data, response, error in
-                    if let error = error {
-                        NSLog("Failed to upload HR data: \(error)")
-                    } else {
-                        NSLog("HR data uploaded successfully")
-                    }
-                }.resume()
-                
+                try await SupabaseClient.shared.insertHeartRateData(hrData)
+                NSLog("HR data uploaded successfully to Supabase")
             } catch {
-                NSLog("Failed to serialize HR data: \(error)")
+                NSLog("Failed to upload HR data to Supabase: \(error)")
             }
         }
+    }
     private func sendACCDataToCloud(_ accData: [String: Any]) {
-        guard let url = URL(string: "https://saveheartrate-345080069050.us-west2.run.app") else { return }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: accData)
-            
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    NSLog("Failed to upload ACC data: \(error)")
-                } else {
-                    NSLog("ACC data uploaded successfully")
-                }
-            }.resume()
-            
-        } catch {
-            NSLog("Failed to serialize ACC data: \(error)")
+        Task {
+            do {
+                try await SupabaseClient.shared.insertAccelerometerData(accData)
+                NSLog("ACC data uploaded successfully to Supabase")
+            } catch {
+                NSLog("Failed to upload ACC data to Supabase: \(error)")
+            }
         }
     }
     private func getCurrentTimestamp() -> String {
